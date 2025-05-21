@@ -1,0 +1,122 @@
+/* product.css - matte black theme with animation */
+
+.product-section {
+  padding: 40px 20px;
+  background: #121212; /* dark matte black */
+  text-align: center;
+  color: #eee; /* light text */
+  min-height: 90vh;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: #f0f0f0;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.product-card {
+  background: #1e1e1e;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.9);
+  padding: 25px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #333;
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0, 112, 243, 0.7);
+  border-color: #0070f3;
+}
+
+.product-image {
+  max-width: 150px;
+  object-fit: contain;
+  margin-bottom: 15px;
+  filter: drop-shadow(0 0 5px rgba(0, 112, 243, 0.6));
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-image {
+  transform: scale(1.05);
+}
+
+.product-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.product-description {
+  font-size: 1rem;
+  color: #bbb;
+  margin-bottom: 15px;
+  min-height: 60px;
+}
+
+.product-price {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #00aaff;
+  margin-bottom: 20px;
+  text-shadow: 0 0 4px #00aaffaa;
+}
+
+.buy-btn {
+  background-color: #0070f3;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.6s ease;
+  width: 100%;
+  max-width: 200px;
+  box-shadow: 0 0 12px #0070f3;
+  animation: pulseGlow 2.5s infinite;
+}
+
+.buy-btn:hover {
+  background-color: #005bb5;
+  box-shadow: 0 0 25px #005bb5;
+  animation: none;
+}
+
+/* Animations */
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 12px #0070f3;
+  }
+  50% {
+    box-shadow: 0 0 25px #0070f3;
+  }
+}
