@@ -5,22 +5,21 @@ body {
   font-family: 'Poppins', sans-serif;
   margin: 0;
   padding: 0;
-}
-
-.home-hero {
-  background-size: cover;
-  background-position: center;
+}.home-hero {
   color: #f5f5f5;
   min-height: 100vh;
   display: flex;
   align-items: center;
   padding: 4rem 2rem;
   position: relative;
-  opacity: 0;
-  animation: fadeSlideUp 1s ease-out forwards;
+  opacity: 1;
   z-index: 1;
-  background-image: url(https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ2x0c2d5Y2E5ZzJrZXkzOWE5eHd2YWFvZndoMGcxMG1hejB6b2R5YyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/Sb7z05GQV4WR9q2mMW/giphy.webp);
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
+
 
 /* Matte black overlay */
 .home-hero::before {
