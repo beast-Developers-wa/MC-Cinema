@@ -1,0 +1,36 @@
+.error-rise {
+  opacity: 0;
+  transform: translateX(-20px); 
+  color: red;
+  font-weight: bold;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  background: #ffdddd;
+  padding: 10px 20px;
+  border: 1px solid red;
+  border-radius: 4px;
+  z-index: 1000;
+}
+
+.error-rise.animate {
+  opacity: 1;
+  transform: translateX(0); 
+  animation: slideRight 2s ease backwards;
+}
+
+@keyframes slideRight {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(10px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+}
