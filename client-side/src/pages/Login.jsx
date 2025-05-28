@@ -27,7 +27,7 @@ const Login = () => {
     setLoading(true);
     try {
       const res = await axios.post(
-        ' http://192.168.43.16:5000/login',
+        ' http://your-ip:5000/login',
         { emailOrUsername, password },
         { withCredentials: true }
       );
