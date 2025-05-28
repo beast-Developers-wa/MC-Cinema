@@ -1,10 +1,10 @@
-/* product.css - matte black theme with animation */
+
 
 .product-section {
   padding: 40px 20px;
-  background: #121212; /* dark matte black */
+  background: #121212; 
   text-align: center;
-  color: #eee; /* light text */
+  color: #eee; 
   min-height: 90vh;
 }
 
@@ -99,7 +99,6 @@
   animation: none;
 }
 
-/* Animations */
 
 @keyframes fadeInUp {
   0% {

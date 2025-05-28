@@ -7,7 +7,7 @@
   font-style: normal;
 }
 
-/* === Header === */
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -20,7 +20,7 @@
   z-index: 10;
 }
 
-/* === Logo === */
+
 .logo {
   font-family: 'Space Age', sans-serif;
   font-size: 32px;
@@ -28,7 +28,7 @@
   color: white;
 }
 
-/* === Nav Links (Desktop) === */
+
 .nav-links {
   display: flex;
   gap: 40px;
@@ -46,7 +46,6 @@
   color: #D3AF37;
 }
 
-/* === Hamburger Icon === */
 .menu-icon {
   display: none;
   font-size: 28px;
@@ -55,7 +54,7 @@
   z-index: 20;
 }
 
-/* === Mobile Styles === */
+
 @media (max-width: 768px) {
   .nav-links {
     position: absolute;

@@ -1,7 +1,7 @@
 import React from 'react';
 import '../styles/product.css';
 
-// Correct imports with proper relative path
+
 import img1 from '../assets/img1.png';
 import img2 from '../assets/img2.png';
 import img3 from '../assets/img3.png';
@@ -11,7 +11,7 @@ const products = [
     id: 1,
     name: 'ShadowPods',
     description: 'Deep bass, sleek matte finish, noise-cancellation.',
-    image: img1,   // use imported varibles here
+    image: img1,  
     price: '$129',
   },
   {
