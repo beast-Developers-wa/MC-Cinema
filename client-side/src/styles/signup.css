@@ -8,7 +8,7 @@ body {
 
 .auth-container {
   background: linear-gradient(135deg, #0f0f0f, #1a1a1a); 
-  width: 32vw;
+  width: 38vw;
   padding: 60px 50px;
   margin: 6rem auto;
   border-radius: 12px;
@@ -42,6 +42,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 28px;
+
 }
 
 
@@ -306,4 +307,140 @@ background: linear-gradient(-145deg, #969696, #111111);
 .terms-checkbox label span:hover {
   color: #ffffff; 
   text-decoration: none;
+}
+.redirectlink {
+  text-align: center;
+  font-size: 0.875rem; /* Tailwind's text-sm */
+  color: #4B5563; /* Tailwind's gray-600 */
+  margin-top: 1rem;
+  margin-bottom: 1.5rem; /* add gap below */
+  bottom: 100px; /* no effect without position, but kept */
+}
+
+.linktext {
+  border: none;
+  color: #f5f5f5;
+  font-weight: 700;
+  padding: 14px 28px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.35s ease;
+  font-size: 20px;
+  width: 50%;
+  max-width: 280px;
+  letter-spacing: 0.05em;
+  user-select: none;
+  text-decoration: none;
+  margin: 10px;
+  text-align: center;
+  left: 100px; /* no position set, so no effect */
+}
+.linktext:hover {
+  background: linear-gradient(-145deg, #969696, #111111);
+  box-shadow: 0 2px 4px rgba(60, 64, 67, 0.3),
+              0 2px 6px rgba(60, 64, 67, 0.15);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .auth-container {
+    width: 70vw;
+    padding: 50px 40px;
+    margin: 5rem auto;
+  }
+
+  .auth-container button,
+  .linktext {
+    width: 70%;
+    font-size: 18px;
+    padding: 12px 24px;
+  }
+
+  .auth-container h2 {
+    font-size: 24px;
+    margin-bottom: 30px;
+  }
+
+  .auth-container form {
+    min-height: 700px; /* changed fixed height to min-height for flexibility */
+  }
+}
+
+@media (max-width: 768px) {
+  .auth-container {
+    width: 90vw;
+    padding: 40px 30px;
+    margin: 4rem auto;
+  }
+
+  .auth-container button,
+  .linktext {
+    width: 90%;
+    font-size: 16px;
+    padding: 12px 20px;
+  }
+
+  .auth-container h2 {
+    font-size: 22px;
+    margin-bottom: 25px;
+  }
+
+  .social-login-buttons {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .auth-container form {
+    min-height: 700px;
+  }
+
+  .linktext {
+    margin: 40px auto; /* reduced margin and centered */
+    display: block;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .auth-container {
+    width: 95vw;
+    padding: 30px 20px;
+    margin: 3rem auto;
+  }
+
+  .auth-container h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  .auth-container button,
+  .linktext {
+    width: 100%;
+    font-size: 14px;
+    padding: 10px 16px;
+  }
+
+  .social-login-buttons button {
+    justify-content: center;
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  .icon-right {
+    font-size: 18px;
+    right: 10px;
+  }
+
+  .terms-group {
+    font-size: 12px;
+    gap: 8px;
+  }
+
+  .terms-checkbox {
+    font-size: 14px;
+  }
+
+  .linktext {
+    margin: 20px 0; /* small vertical margin */
+  }
 }
