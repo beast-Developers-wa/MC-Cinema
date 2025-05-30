@@ -11,7 +11,7 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 const MONGO_URI = process.env.MONGO_URI;
-const FRONTEND_ORIGIN = process.env.FRONTEND_ORIGIN || 'http://192.168.44.68:5173';
+const FRONTEND_ORIGIN = process.env.FRONTEND_ORIGIN || 'http://localhost:5173';
 const JWT_ACCESS_SECRET = process.env.JWT_ACCESS_SECRET || 'access_secret';
 const JWT_REFRESH_SECRET = process.env.JWT_REFRESH_SECRET || 'refresh_secret';
 
