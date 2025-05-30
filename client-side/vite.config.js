@@ -7,6 +7,7 @@ export default defineConfig({
     host: true,       // listen on 0.0.0.0 for network access
     port: 5173,
     strictPort: true,
+    https: false,     // disable HTTPS here
     // proxy if needed:
     // proxy: {
     //   '/api': 'http://localhost:5000',
