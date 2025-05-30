@@ -71,7 +71,7 @@ export default function Signup() {
     const timeoutId = setTimeout(() => controller.abort(), 10000); // 10s timeout
 
     try {
-      const res = await fetch('http://192.168.149.99:5000/signup', {
+      const res = await fetch('http://localhost:5000/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
