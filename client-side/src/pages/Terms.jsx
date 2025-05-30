@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import '../styles/terms.css';
 
@@ -6,93 +6,104 @@ const Terms = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const handleAccept = () => {
-    if (location.state?.fromSignup) {
-      navigate('/signup', {
-        state: {
-          fromTerms: true,
-           acceptedTerms: true,
-          savedForm: location.state.savedForm,
-        },
-      });
-    } else {
-      navigate('/signup');
-    }
-  };
+  const savedForm = location.state?.savedForm ?? null;
 
-const handleDecline = () => {
-  navigate('/signup', { state: { acceptedTerms: false } });
-};
+  const handleAccept = useCallback(() => {
+    navigate('/signup', {
+      state: {
+        acceptedTerms: true,
+        savedForm,
+      },
+      replace: true,
+    });
+  }, [navigate, savedForm]);
+
+  const handleDecline = useCallback(() => {
+    navigate('/signup', {
+      state: {
+        acceptedTerms: false,
+      },
+      replace: true,
+    });
+  }, [navigate]);
 
   return (
-    <div className="terms-container">
+    <main className="terms-container" aria-label="Terms and Conditions">
       <h1>Terms and Conditions</h1>
-      <div className="terms-text">
-        <p>
-          Welcome to our E-Commerce Platform. By accessing or using our website, you agree to be bound by these Terms and Conditions. We encourage you to read this document carefully before proceeding.
-        </p>
+      
+<>
+  <h3>Introduction</h3>
+  <p>
+    Welcome to our ecommerce platform. By using our site, you agree to comply with and be bound by these Terms and Conditions.
+  </p>
 
-        <h3>Acceptance of Terms</h3>
-        <p>
-          Creating an account, browsing products, or making purchases signifies your full acceptance of these Terms. If you disagree with any provision, please refrain from using the platform.
-        </p>
+  <h3>Eligibility</h3>
+  <p>
+    You must be at least 18 years old to create an account and make purchases.
+  </p>
 
-        <h3>Account Registration</h3>
-        <p>
-          Access to certain features requires registration. You commit to providing truthful, accurate information and keeping your account credentials confidential. You are responsible for all activity under your account.
-        </p>
+  <h3>Product Availability</h3>
+  <p>
+    All products are subject to availability, and we reserve the right to refuse or cancel any orders.
+  </p>
 
-        <h3>Orders and Payment</h3>
-        <p>
-          All purchases depend on product availability and order confirmation. Prices and shipping fees may change, but confirmed orders will not be affected. Payments are securely processed through trusted payment gateways.
-        </p>
+  <h3>Pricing and Descriptions</h3>
+  <p>
+    Prices, descriptions, and availability of products may change without notice.
+  </p>
 
-        <h3>Shipping and Delivery</h3>
-        <p>
-          Delivery timelines vary based on your location and the shipping option selected. We disclaim liability for delays caused by third parties such as shipping carriers or customs authorities.
-        </p>
+  <h3>Privacy and Data Protection</h3>
+  <p>
+    Your personal information will be protected and handled according to our Privacy Policy.
+  </p>
 
-        <h3>Returns and Refunds</h3>
-        <p>
-          You may return eligible products within 14 days of receipt, provided they are unused and in original packaging. Certain goods such as perishables or custom orders are excluded. Please consult our detailed return policy for specifics.
-        </p>
+  <h3>User Conduct</h3>
+  <p>
+    Unauthorized use of our website or attempts to disrupt service may result in legal action.
+  </p>
 
-        <h3>Intellectual Property</h3>
-        <p>
-          All content including text, images, and logos are owned or licensed by us. Unauthorized copying or distribution is strictly prohibited.
-        </p>
+  <h3>Order Confirmation</h3>
+  <p>
+    You will receive an order confirmation email after placing an order, but this does not guarantee acceptance of your order.
+  </p>
 
-        <h3>Prohibited Activities</h3>
-        <p>
-          You agree not to misuse the platform by introducing harmful code, engaging in fraudulent behavior, or violating applicable laws.
-        </p>
+  <h3>Payment Terms</h3>
+  <p>
+    Payments must be made through our approved payment methods. We do not store your payment information.
+  </p>
 
-        <h3>Disclaimer</h3>
-        <p>
-          The platform and its services are provided “as is” without warranties of any kind, either express or implied.
-        </p>
+  <h3>Shipping and Delivery</h3>
+  <p>
+    Shipping times are estimates and may vary. We are not responsible for delays caused by third-party carriers.
+  </p>
 
-        <h3>Limitation of Liability</h3>
-        <p>
-          To the fullest extent allowed by law, we disclaim liability for indirect, incidental, or consequential damages resulting from your use of the platform.
-        </p>
+  <h3>Returns and Refunds</h3>
+  <p>
+    Returns and refunds are subject to our Return Policy. Please review it carefully before making a purchase.
+  </p>
+</>
 
-        <h3>Governing Law</h3>
-        <p>
-          These Terms are governed by the laws of [Your Country or State], and any disputes will be subject to the jurisdiction of the appropriate courts.
-        </p>
 
-        <h3>Amendments to Terms</h3>
-        <p>
-          We reserve the right to modify these Terms at any time. Your continued use of the website after such changes constitutes acceptance of the updated Terms.
-        </p>
+
+      <div className="buttons" role="group" aria-label="Terms acceptance actions">
+        <button
+          className="accept"
+          onClick={handleAccept}
+          aria-label="Accept Terms and Conditions"
+          type="button"
+        >
+          Accept
+        </button>
+        <button
+          className="decline"
+          onClick={handleDecline}
+          aria-label="Decline Terms and Conditions"
+          type="button"
+        >
+          Decline
+        </button>
       </div>
-
-      <div className="buttons">
-        <button className="accept" onClick={handleAccept}>Accept</button>
-        <button className="decline" onClick={handleDecline}>Decline</button>
-      </div>
-    </div>
+    </main>
   );
 };
 
