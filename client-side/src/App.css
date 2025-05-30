@@ -43,3 +43,14 @@
 body{
   background-color: black;
 }
+/* app.css */
+
+.login-page-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.login-page-layout > *:last-child {
+  margin-top: auto;
+}

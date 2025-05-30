@@ -9,30 +9,40 @@ import Product from './pages/Product';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Terms from './pages/Terms';
+// import NotFound from './pages/NotFound'; // Optional
 
 import './styles/app.css';
 
 const App = () => {
   const location = useLocation();
-  const hideHeaderRoutes = ['/signup', '/login' ,'/terms'];
+  const hideHeaderFooterRoutes = ['/login', '/signup', '/terms'];
+
+  const shouldHideHeaderFooter = hideHeaderFooterRoutes.includes(location.pathname);
 
   return (
     <div className="bg-gif-wrapper">
       <div className="overlay">
-        {!hideHeaderRoutes.includes(location.pathname) && <Header />}
+        {/* Header */}
+        {!shouldHideHeaderFooter && <Header />}
 
         <main>
           <Routes>
+            {/* Public Routes only */}
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
             <Route path="/product" element={<Product />} />
+
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/terms" element={<Terms />} />
+
+            {/* Optional 404 */}
+            {/* <Route path="*" element={<NotFound />} /> */}
           </Routes>
         </main>
 
-        <Footer />
+        {/* Footer */}
+        {!shouldHideHeaderFooter && <Footer />}
       </div>
     </div>
   );
