@@ -7,7 +7,9 @@ const ErrorRise = ({ message, trigger }) => {
   useEffect(() => {
     if (trigger) {
       setAnimate(true);
-      const timer = setTimeout(() => setAnimate(false), 1500); 
+      const timer = setTimeout(() => {
+        setAnimate(false);
+      }, 1500);
       return () => clearTimeout(timer);
     }
   }, [trigger]);
