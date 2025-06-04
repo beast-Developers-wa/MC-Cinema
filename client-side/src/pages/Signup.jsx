@@ -48,71 +48,71 @@ export default function Signup() {
     if (successMsg) setSuccessMsg('');
   }, [errorMsg, successMsg]);
 
- const handleSubmit = useCallback(
-  async (e) => {
-    e.preventDefault();
-    const { username, email, password, mobile } = formData;
+  const handleSubmit = useCallback(
+    async (e) => {
+      e.preventDefault();
+      const { username, email, password, mobile } = formData;
 
-    // Validation
-    if (!username.trim() || !email.trim() || !password || !mobile.trim()) {
-      setErrorMsg('Please fill all fields.');
-      return;
-    }
-    if (!acceptedTerms) {
-      setErrorMsg('Please accept the Terms and Conditions to signup.');
-      return;
-    }
+      // Validation
+      if (!username.trim() || !email.trim() || !password || !mobile.trim()) {
+        setErrorMsg('Please fill all fields.');
+        return;
+      }
+      if (!acceptedTerms) {
+        setErrorMsg('Please accept the Terms and Conditions to signup.');
+        return;
+      }
 
-    setLoading(true);
-    setErrorMsg('');
-    setSuccessMsg('');
+      setLoading(true);
+      setErrorMsg('');
+      setSuccessMsg('');
 
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10s timeout
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 10000); // 10s timeout
 
-    try {
-      const res = await fetch('http://localhost:5000/signup', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        credentials: 'include',
-        body: JSON.stringify({ username, email, password, mobile }),
-        signal: controller.signal,
-      });
-
-      clearTimeout(timeoutId);
-
-      let data = {};
       try {
-        data = await res.json();
-      } catch {
-        // ignore JSON parse errors
-      }
+        const res = await fetch('http://localhost:5000/signup', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'include',
+          body: JSON.stringify({ username, email, password, mobile }),
+          signal: controller.signal,
+        });
 
-      if (res.ok) {
-        setSuccessMsg(data?.message || 'Signup successful!');
-        setFormData({ username: '', email: '', password: '', mobile: '' });
-        setAcceptedTerms(false);
+        clearTimeout(timeoutId);
 
-        // Redirect to login after a short delay to show success message
-        setTimeout(() => {
-          navigate('/login');
-        }, 1500);
-      } else {
-        setErrorMsg(data?.message || `Signup failed with status ${res.status}`);
+        let data = {};
+        try {
+          data = await res.json();
+        } catch {
+          // ignore JSON parse errors
+        }
+
+        if (res.ok) {
+          setSuccessMsg(data?.message || 'Signup successful!');
+          setFormData({ username: '', email: '', password: '', mobile: '' });
+          setAcceptedTerms(false);
+
+          // Redirect to login after a short delay to show success message
+          setTimeout(() => {
+            navigate('/login');
+          }, 1500);
+        } else {
+          setErrorMsg(data?.message || `Signup failed with status ${res.status}`);
+        }
+      } catch (err) {
+        clearTimeout(timeoutId);
+        if (err.name === 'AbortError') {
+          setErrorMsg('Signup request timed out. Please try again.');
+        } else {
+          setErrorMsg('Network error: unable to signup.');
+        }
+      } finally {
+        setLoading(false);
       }
-    } catch (err) {
-      clearTimeout(timeoutId);
-      if (err.name === 'AbortError') {
-        setErrorMsg('Signup request timed out. Please try again.');
-      } else {
-        setErrorMsg('Network error: unable to signup.');
-      }
-    } finally {
-      setLoading(false);
-    }
-  },
-  [formData, acceptedTerms, navigate] // added navigate to deps
-);
+    },
+    [formData, acceptedTerms, navigate]
+  );
 
   const handleSocialLogin = useCallback(
     async (provider, successMsgText, errorMsgText) => {

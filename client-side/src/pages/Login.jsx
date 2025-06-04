@@ -49,7 +49,7 @@ export default function Login() {
     setSuccessMsg('');
   }, []);
 
-  // Backend login - save token on success
+  // Backend login - save token and role on success
   const backendLogin = useCallback(async () => {
     const { email, password } = formData;
 
@@ -71,7 +71,16 @@ export default function Login() {
         throw new Error('No access token received');
       }
 
+      // Save token & role
       localStorage.setItem('accessToken', data.accessToken);
+
+      // Save user role for RBAC (assuming backend sends it)
+      if (data.role) {
+        localStorage.setItem('userRole', data.role);
+      } else {
+        // Default role if not sent
+        localStorage.setItem('userRole', 'user');
+      }
 
       return data;
     } catch (err) {
@@ -92,10 +101,17 @@ export default function Login() {
 
     setLoading(true);
     try {
-      await backendLogin();
+      const data = await backendLogin();
       setSuccessMsg('Login successful! Redirecting...');
       setFormData({ email: '', password: '' });
-      setTimeout(() => navigate('/home', { replace: true }), 1500);
+
+      // Redirect based on role
+      const role = data.role || localStorage.getItem('userRole');
+      if (role === 'admin') {
+        setTimeout(() => navigate('/admin', { replace: true }), 1500);
+      } else {
+        setTimeout(() => navigate('/home', { replace: true }), 1500);
+      }
     } catch (error) {
       console.error('Login error:', error);
       setErrorMsg(error.message || 'Login failed.');
@@ -116,6 +132,8 @@ export default function Login() {
       try {
         await signInWithPopup(auth, provider);
         setSuccessMsg(successText);
+        // After social login, navigate to user home, 
+        // You can extend to fetch role info if needed
         setTimeout(() => navigate('/home', { replace: true }), 1500);
       } catch (error) {
         console.error(`${providerKey} login error:`, error);
@@ -176,7 +194,6 @@ export default function Login() {
           </span>
         </div>
 
-        {/* Optional: Forgot Password link */}
         <div className="forgot-password">
           <Link to="/forgot-password">Forgot Password?</Link>
         </div>
