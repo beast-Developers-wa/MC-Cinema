@@ -1,0 +1,284 @@
+/* home.css */
+
+/* Reset and base styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.home-hero {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background-position: center center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #fff;
+  overflow: hidden;
+  padding: 0 2rem;
+}
+
+
+.home-container {
+  max-width: 1200px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+
+.text-content {
+  flex: 1;
+  max-width: 450px;
+}
+
+.text-anim {
+  animation: textFadeSlide 1s forwards;
+}
+
+@keyframes textFadeSlide {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.sub-title {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #ccc;
+  margin-bottom: 0.75rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.main-title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+
+.description {
+  font-size: 1.15rem;
+  line-height: 1.5;
+  margin-bottom: 0.75rem;
+  color: #ddd;
+}
+
+.see-more {
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid #fff;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.1rem;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.see-more:hover,
+.see-more:focus {
+  background-color: #fff;
+  color: #000;
+  outline: none;
+}
+
+
+.image-content {
+  position: relative;
+  flex: 1 1;
+  max-width: 600px;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4.5rem;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 500px;
+  z-index: 10;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.25);
+  border: none;
+  color: #ffffff;
+  font-size: 3rem;
+  cursor: pointer;
+  width: 50px;
+  height: 80px;
+  border-radius: 10px;
+  user-select: none;
+  transition: background-color 0.3s ease;
+}
+
+.carousel-btn:hover {
+  background-color: rgba(255, 255, 255, 0.6);
+  color: #000;
+  outline: none;
+}
+
+.carousel-btn.prev {
+  left: 200px;
+}
+
+.carousel-btn.next {
+  right: 100px;
+}
+
+.airpod-image {
+  user-select: none;
+  pointer-events: none;
+  object-fit: contain;
+  transition: transform 0.7s ease, filter 0.7s ease, opacity 0.7s ease;
+  position: relative;
+  max-height: 550px;
+}
+
+
+.main-image {
+  z-index: 5;
+  width: 380px;
+  transform: scale(1);
+  filter: none;
+  opacity: 1;
+  transition-timing-function: cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.second-image {
+  z-index: 4;
+  width: 200px;
+  margin-left: auto;
+  filter: blur(2.5px) brightness(0.8);
+  opacity: 0.8;
+  transform: scale(0.85);
+}
+
+
+.third-image {
+  z-index: 3;
+  width: 140px;
+  margin-left: 25px;
+  filter: blur(5px) brightness(0.6);
+  opacity: 0.6;
+  transform: scale(0.7);
+}
+
+
+@keyframes slideLeftFade {
+  0% {
+    transform: translate(-150%, -50%) scale(0.9);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate(-250%, -50%) scale(0.9);
+    opacity: 0;
+  }
+}
+
+.old-image {
+  position: absolute;
+  left: calc(50% - 150px);
+  top: 50%;
+  transform: translate(-150%, -50%) scale(0.9);
+  opacity: 0.7;
+  filter: grayscale(40%) brightness(0.7) blur(4px);
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+  z-index: 0;
+  animation: slideLeftFade 1.5s ease forwards;
+}
+
+
+@media (max-width: 900px) {
+  .home-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 3rem;
+  }
+
+  .text-content {
+    max-width: 100%;
+  }
+
+  .image-content {
+    max-width: 100%;
+    height: 300px;
+  }
+
+  .carousel-btn.prev {
+    left: 5px;
+    top: auto;
+    bottom: 10px;
+    transform: none;
+    width: 40px;
+    height: 50px;
+    font-size: 2rem;
+  }
+
+  .carousel-btn.next {
+    right: 5px;
+    top: auto;
+    bottom: 10px;
+    transform: none;
+    width: 40px;
+    height: 50px;
+    font-size: 2rem;
+  }
+
+  .main-image {
+    width: 220px;
+  }
+
+  .second-image {
+    width: 140px;
+    margin-left: 15px;
+  }
+
+  .third-image {
+    width: 100px;
+    margin-left: 15px;
+  }
+
+  .old-image {
+    left: 50%;
+    transform: translate(-120%, -50%) scale(0.8);
+  }
+}
+
+@media (max-width: 480px) {
+  .main-title {
+    font-size: 2.5rem;
+  }
+
+  .sub-title {
+    font-size: 0.9rem;
+  }
+
+  .description {
+    font-size: 1rem;
+  }
+
+  .see-more {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+  }
+}
